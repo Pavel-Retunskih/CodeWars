@@ -24,3 +24,5 @@ function deleteNth(arr, n){
     }  
     return arrNew;
 }
+
+console.log(deleteNth(lst, 3))
