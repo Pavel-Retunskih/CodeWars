@@ -32,8 +32,9 @@ function mix(s1, s2) {
       result.push(prefix);
     }
   }
-// сортировка результата
-  return result.sort((a, b) => b.length - a.length || b.localeCompare(a)).join('/');
+// сортировка результата(не работает как надо) - FIX завтра попробовать
+console.log(result);
+  return result.sort((a,b)=>b.length-a.length || b.localeCompare(a)).join('/')
 }
 
 
@@ -43,7 +44,7 @@ console.log(mix("Are they here", "yes, they are here"));
 
 
 
-//2:eeeee/1:hh/1:rr/2:yy ----- получилось
+//2:eeeee/2:yy/=:rr/=:hh ----- получилось
 //-------------------------------
 //"2:eeeee/2:yy/=:hh/=:rr" ---- нужно
 //
