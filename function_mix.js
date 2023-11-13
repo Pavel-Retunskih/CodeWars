@@ -33,8 +33,12 @@ function mix(s1, s2) {
     }
   }
 // сортировка результата(не работает как надо) - FIX завтра попробовать
-console.log(result);
-  return result.sort((a,b)=>b.length-a.length || b.localeCompare(a)).join('/')
+console.log(result.sort());
+  return result.sort((a,b)=>{
+    if(b.length - a.length !== 0){
+        return b.length - a.length
+    } else if()
+  })
 }
 
 
