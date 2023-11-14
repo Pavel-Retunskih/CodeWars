@@ -9,7 +9,7 @@ function mix(s1, s2) {
         console.log(freq);
         return freq;       
       }
-
+    
 // количество символов в строках      
   const s1Freq = getFrequency(s1);
   console.log(s1Freq)
@@ -33,22 +33,15 @@ function mix(s1, s2) {
     }
   }
 // сортировка результата(не работает как надо) - FIX завтра попробовать
-console.log(result.sort());
-  return result.sort((a,b)=>{
-    if(b.length - a.length !== 0){
-        return b.length - a.length
-    } else if()
-  })
+return result.sort((a, b) => {
+  if (b.length - a.length !== 0) {
+    return b.length - a.length;
+  } else if (a.charCodeAt(0) !== b.charCodeAt(0)) {
+    return a.charCodeAt(0) - b.charCodeAt(0);
+  } else {
+    return a.charCodeAt(2) - b.charCodeAt(2);
+  }
+}).join('/')
 }
+console.log(mix("A generation must confront the looming ", "codewarrs")); 
 
-
-
-
-console.log(mix("Are they here", "yes, they are here")); 
-
-
-
-//2:eeeee/2:yy/=:rr/=:hh ----- получилось
-//-------------------------------
-//"2:eeeee/2:yy/=:hh/=:rr" ---- нужно
-//
