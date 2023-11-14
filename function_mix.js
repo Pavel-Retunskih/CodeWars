@@ -32,7 +32,7 @@ function mix(s1, s2) {
       result.push(prefix);
     }
   }
-// сортировка результата(не работает как надо) - FIX завтра попробовать
+// сортировка результата
 return result.sort((a, b) => {
   if (b.length - a.length !== 0) {
     return b.length - a.length;
