@@ -1,6 +1,6 @@
 // Create a function that takes a Roman numeral as its argument and returns its value as a numeric decimal integer. You don't need to validate the form of the Roman numeral.
 function romanToDecimal(roman) {
-    const romanNumerals = {
+    const romNums = {
       I: 1,
       V: 5,
       X: 10,
@@ -8,18 +8,18 @@ function romanToDecimal(roman) {
       C: 100,
       D: 500,
       M: 1000
-    };
-    
-    let decimalValue = 0;
-  
-    for (let i = 0; i < roman.length; i++) {
-      if (romanNumerals[roman[i]] > romanNumerals[roman[i + 1]]) {
-        decimalValue -= romanNumerals[roman[i]];
+    };    
+    let out = 0;
+    let strToArr =roman.split('')  
+    for (let i = 0; i < strToArr.length; i++) {
+      if (romNums[strToArr[i]] < romNums[strToArr[i + 1]]) {
+        out -= romNums[strToArr[i]];
       } else {
-        decimalValue += romanNumerals[roman[i]];
+        out += romNums[strToArr[i]];
       }
     }
-  
-    return decimalValue;
+    return out;    
   }
-  console.log(romanToDecimal("MDXC"))
+  console.log(romanToDecimal("MCMXC"))
+  let str = "MCMXC";
+  console.log(str.split(''));
