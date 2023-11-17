@@ -10,6 +10,4 @@ function getCount(str) {
     return count;    
   }
 
-    let str ="abracadabra";
-    let array = str.split('')
-    console.log(getCount("abracadabra"));
+    
