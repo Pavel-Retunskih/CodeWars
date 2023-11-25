@@ -48,3 +48,10 @@ return out.sort((a,b)=>{return a-b});
 
 let arr9 = [79,9,67,23,424];
 console.log(minMax(arr9));
+
+
+var number=function(array){
+  return array.map((el, index)=>{return `${index + 1}: ${el}`});
+  }
+
+  console.log(number(arr9));
