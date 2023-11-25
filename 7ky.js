@@ -38,3 +38,13 @@ function oddOrEven(array) {
 
 let arr6 =[]
 console.log(oddOrEven(arr6));
+
+function minMax(arr){
+let out =[];
+out.push(Math.min(...arr));
+out.push(Math.max(...arr));
+return out.sort((a,b)=>{return a-b});
+}
+
+let arr9 = [79,9,67,23,424];
+console.log(minMax(arr9));
