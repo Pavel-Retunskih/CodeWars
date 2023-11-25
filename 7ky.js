@@ -26,3 +26,15 @@ function removeExclamationMarks(s) {
 
 let arr = ['3', '123124234', undefined, 'needle', 'world', 'hay', 2, '3', true, false];
 console.log(findNeedle(arr));
+
+
+function oddOrEven(array) {
+  if(array[0] == undefined){
+    return "even"
+  }else if (array.reduce((acum, item)=>{return acum+item})%2 === 0 && array.length!==0){
+    return "even"
+  }else return "odd"
+}
+
+let arr6 =[]
+console.log(oddOrEven(arr6));
