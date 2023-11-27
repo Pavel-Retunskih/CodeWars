@@ -55,3 +55,9 @@ var number=function(array){
   }
 
   console.log(number(arr9));
+
+  function printerError(s) {
+    return ` ${s.split(/[a-m]/).join('').length}/${s.length}`
+}
+let str10 = 'aaajjkksxnnnshhhdggg'
+console.log(printerError(str10));
