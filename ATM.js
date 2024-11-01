@@ -1,46 +1,48 @@
-const bill = {
-  5000: 5,
-  1000: 3,
-  500: 2,
-  200: 4,
-  100: 5,
-  50: 10,
-};
-function Atm(balance, currency, bills) {
-  const result = {};
-  let remain = currency
-
-  if (balance < currency) {
-    return "Недостаточно средств на счете.";
+function atm(value) {
+  const VALUES = {
+    "EUR": [500, 200, 100, 50, 20, 10, 5],
+    "USD": [100, 50, 20, 10, 5, 2, 1],
+    "RUB": [5000, 1000, 500, 100, 50, 10],
+    "UAH": [500, 200, 100, 50, 20, 10, 5, 2, 1],
+    "CUP": [100, 50, 20, 10, 5, 3, 1],
+    "SOS": [1000, 500, 100, 50, 20, 10]
+  };
+  const DIVISIBLE_RULES = {
+    EUR: 5,
+    RUB: 10,
+    SOS: 1000,
   }
-  const availableBills = Object.keys(bills).map(Number).sort((a, b) => b - a);
-  for( let bill of availableBills){
-    let neededBill = Math.floor(remain / bill)
+
+  let result = []
+  const regex = /^(\d+)\s*([a-zA-Z]+)$|^([a-zA-Z]+)\s*(\d+)$/i;
+  let math = value.match(regex);
+  
+  if (!math) {
+    return `Sorry, have no ${value.match(/[^\d\s]+/g).join("")}.`
+  }
+  const currencyCode = (math[2] || math[3]).toUpperCase();
+  let amountToWithdraw = math[1] || math[4];
 
 
-    let availableNeededBills = bills[bill]
-    let usedBills = Math.min(neededBill, availableNeededBills);
+  if (!VALUES[currencyCode]) {
+    return `Sorry, have no ${currencyCode}.`
+  }
 
-    if(usedBills>0){
-      result[bill] = usedBills;
-      remain -= usedBills*bill;
+  const minDivisibility = DIVISIBLE_RULES[currencyCode] || 1
+  if (amountToWithdraw % minDivisibility !== 0) {
+    return `Can't do ${amountToWithdraw} ${currencyCode}. Value must be divisible by ${DIVISIBLE_RULES[currencyCode]}!`
+  }
+
+  const sortedAmountToWithdraw = [...VALUES[currencyCode]].sort((a, b) => b - a)
+  for (let nominal of sortedAmountToWithdraw) {
+    const usedCurrencyToWithdraw = Math.floor(amountToWithdraw / nominal)
+    if (usedCurrencyToWithdraw !== 0) {
+      result.push(` ${usedCurrencyToWithdraw} * ${nominal} ${currencyCode}`)
+      amountToWithdraw -= usedCurrencyToWithdraw * nominal
     }
 
   }
-  if(remain>0){
-    return "Невозможно выдать такую сумму."
-  }
-  for(let [bill, count] of Object.entries(result)){
-    bills[bill] -= count;
-  }
-  balance-=currency
-
-  return {
-    message: "Операция успешна",
-    withdrawn: result,
-    newBalance: balance
-  };
-
+  return result.join(",").trim()
 }
 
-console.log(Atm(10000, 4750, bill))
+console.log(atm('wewer92422222 EUR'));
